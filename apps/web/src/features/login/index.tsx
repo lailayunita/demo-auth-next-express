@@ -5,20 +5,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useFormik } from "formik";
-import { RegisterSchema } from "./schemas/RegisterSchema";
-import useRegister from "@/hooks/api/auth/useRegister";
+import { LoginSchema } from "./schemas/LoginSchema";
+import useLogin from "@/hooks/api/auth/useLogin";
 
-const RegisterPage = () => {
-  const { register, isLoading } = useRegister();
+const LoginPage = () => {
+  const { login, isLoading } = useLogin();
+  console.log(isLoading);
+
   const formik = useFormik({
     initialValues: {
-      name: "",
       email: "",
       password: "",
     },
-    validationSchema: RegisterSchema,
+    validationSchema: LoginSchema,
     onSubmit: async (values) => {
-      await register(values);
+      await login(values);
     },
   });
 
@@ -26,25 +27,11 @@ const RegisterPage = () => {
     <main className="flex justify-center pt-20">
       <Card className="w-[350px]">
         <CardHeader>
-          <CardTitle className="text-center">Sign Up</CardTitle>
+          <CardTitle className="text-center">Sign In</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={formik.handleSubmit}>
             <div className="grid w-full items-center gap-4">
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="name">Name</Label>
-                <Input
-                  name="name"
-                  type="text"
-                  placeholder="Your name"
-                  value={formik.values.name}
-                  onBlur={formik.handleBlur}
-                  onChange={formik.handleChange}
-                />
-                {!!formik.touched.name && !!formik.errors.name ? (
-                  <p className="text-xs text-red-500">{formik.errors.name}</p>
-                ) : null}
-              </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -86,4 +73,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default LoginPage;
