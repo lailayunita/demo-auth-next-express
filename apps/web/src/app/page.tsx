@@ -1,3 +1,6 @@
-export default function Home() {
-  return <main>Homepage</main>;
-}
+import Homepage from "@/features/home";
+const page = () => {
+  return <Homepage />;
+};
+
+export default page;
