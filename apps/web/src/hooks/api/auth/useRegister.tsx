@@ -21,7 +21,7 @@ const useRegister = () => {
     setIsLoading(true);
     try {
       //argumen pertama endpoint, argumen kedua req.body
-      await axiosInstance.post("/api/auth/register", {
+      await axiosInstance.post("/auth/register", {
         name: payload.name,
         email: payload.email,
         password: payload.password,
