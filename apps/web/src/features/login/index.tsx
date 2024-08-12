@@ -10,7 +10,8 @@ import useLogin from "@/hooks/api/auth/useLogin";
 import Link from "next/link";
 
 const LoginPage = () => {
-  const { login, isLoading } = useLogin();
+  //isPending sama kayak isLoading, mutateAsync akan execute mutationFn di useLogin
+  const { mutateAsync: login, isPending } = useLogin();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -65,8 +66,8 @@ const LoginPage = () => {
                 Forgot Password
               </Link>
             </div>
-            <Button className="mt-6 w-full" disabled={isLoading}>
-              {isLoading ? "Loading..." : "Submit"}
+            <Button className="mt-6 w-full" disabled={isPending}>
+              {isPending ? "Loading..." : "Submit"}
             </Button>
 
             <Link href="/register" className="mt-4 flex justify-center text-sm">

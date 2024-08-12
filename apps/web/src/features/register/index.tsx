@@ -8,9 +8,10 @@ import { useFormik } from "formik";
 import { RegisterSchema } from "./schemas/RegisterSchema";
 import useRegister from "@/hooks/api/auth/useRegister";
 import Link from "next/link";
+import { is } from "cypress/types/bluebird";
 
 const RegisterPage = () => {
-  const { register, isLoading } = useRegister();
+  const { mutateAsync: register, isPending } = useRegister();
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -77,8 +78,8 @@ const RegisterPage = () => {
                 ) : null}
               </div>
             </div>
-            <Button className="mt-6 w-full" disabled={isLoading}>
-              {isLoading ? "Loading..." : "Submit"}
+            <Button className="mt-6 w-full" disabled={isPending}>
+              {isPending ? "Loading..." : "Submit"}
             </Button>
             <Link
               href="/forgot-password"
