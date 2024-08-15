@@ -1,9 +1,10 @@
 "use client";
 
-import AuthGuard from "@/hoc/AuthGuard";
+import { useSession } from "next-auth/react";
 
 const Homepage = () => {
-  return <div>Homepage</div>;
+  const session = useSession();
+  return <div>Hello, {session.data?.user.name}</div>;
 };
 
-export default AuthGuard(Homepage);
+export default Homepage;

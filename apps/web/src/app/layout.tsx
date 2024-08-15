@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import StoreProvider from "@/providers/StoreProvider";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
+import NextAuthProvider from "@/providers/NextAuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,13 +23,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <StoreProvider>
+        {/* <StoreProvider> */}
+        <NextAuthProvider>
           <ReactQueryProvider>
             <Navbar />
             {children}
             <ToastContainer />
           </ReactQueryProvider>
-        </StoreProvider>
+        </NextAuthProvider>
+        {/* </StoreProvider> */}
       </body>
     </html>
   );

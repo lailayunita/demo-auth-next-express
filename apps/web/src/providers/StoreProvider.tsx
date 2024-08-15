@@ -18,14 +18,14 @@ export default function StoreProvider({
 
   return (
     <Provider store={storeRef.current}>
-      <PersistGate
+      {/* <PersistGate
         persistor={persistStore(storeRef.current)}
         loading={
           <h1 className="mt-20 flex justify-center text-3xl">Loading...</h1>
         }
-      >
-        {children}
-      </PersistGate>
+      > */}
+      {children}
+      {/* </PersistGate> */}
     </Provider>
   );
 }
