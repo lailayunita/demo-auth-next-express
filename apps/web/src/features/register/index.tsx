@@ -81,10 +81,7 @@ const RegisterPage = () => {
             <Button className="mt-6 w-full" disabled={isPending}>
               {isPending ? "Loading..." : "Submit"}
             </Button>
-            <Link
-              href="/forgot-password"
-              className="mt-4 flex justify-center text-sm"
-            >
+            <Link href="/login" className="mt-4 flex justify-center text-sm">
               Already have an account ? Login here
             </Link>
           </form>
